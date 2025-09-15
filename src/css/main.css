@@ -1,0 +1,41 @@
+@import url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css');
+
+:root {
+  /* Colors */
+  --color-lightturquoise: #385b6e;
+  --color-turquoise: #295165;
+
+  --color-orange: #f4bb5a;
+  --color-white: #ffffff;
+
+  --color-darkwhite: #efefef;
+  --color-red: #eb472c;
+  --color-darkblue: #456d92;
+  --color-lightgreen: #00feb5;
+
+  /* Web Font */
+  --font-Apple: 'Apple SD Gothic Neo', sans-serif;
+
+  /* Fonts */
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+  }
+}
+body {
+  font-family: 'Pretendard', sans-serif;
+}
