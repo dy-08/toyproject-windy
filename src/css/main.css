@@ -1,5 +1,5 @@
 @import url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css');
-
+/*  Global */
 :root {
   /* Colors */
   --color-lightturquoise: #385b6e;
@@ -7,8 +7,10 @@
 
   --color-orange: #f4bb5a;
   --color-white: #ffffff;
+  --color-black: #111111;
 
   --color-darkwhite: #efefef;
+  --color-gray: #9aa9b2;
   --color-red: #eb472c;
   --color-darkblue: #456d92;
   --color-lightgreen: #00feb5;
@@ -36,6 +38,120 @@
     font-style: normal;
   }
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Pretendard', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+/* Common */
+main {
+  width: 100%;
+  height: 100vh;
+  background-color: #11111130;
+}
+
+.wrap {
+  width: 100%;
+  height: 80px;
+  margin: 0 auto;
+  background-color: var(--color-white);
+}
+
+.innerBox {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  width: 100%;
+  height: 100%;
+}
+
+#windy {
+  width: 170px;
+  height: 55px;
+  padding-top: 6px;
+  margin-left: -10px;
+}
+
+nav {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Pretendard';
+  font-weight: 700;
+}
+
+.innerBox nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.innerBox ul {
+  display: flex;
+  gap: 50px;
+}
+
+/* Search */
+#search {
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-white);
+}
+#search > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-search {
+  width: 80%;
+  height: 50px;
+  border: 0.5px solid var(--color-gray);
+  border-radius: 4px;
+  padding-left: 20px;
+}
+
+#icon-search {
+  width: 18%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #0081f6;
+  font-size: 18px;
+  color: var(--color-darkwhite);
+  font-family: 'Pretendard';
+  font-weight: 700;
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  height: 80px;
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+}
+.text-copyright {
+  font-size: 12px;
+  color: var(--color-gray);
 }
