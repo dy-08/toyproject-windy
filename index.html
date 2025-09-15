@@ -11,17 +11,25 @@
       <div class="wrap">
         <header>
           <nav class="innerBox">
-            <a href="#"
+            <a href="./index.html"
               ><img
                 id="windy"
                 src="./src/assets/images/logo-w-words-short.svg"
                 alt="윈디 로고"
             /></a>
-            <ul>
-              <li><a href="#" id="weather-now">Now</a></li>
-              <li><a href="#" id="forecast">Forecast</a></li>
-              <li><a href="#" id="promotions">Ads</a></li>
-              <li><a href="#" id="guide">Guide</a></li>
+            <ul id="pages">
+              <li>
+                <a href="#" data-page="weather-now.html" id="weather-now"
+                  >Now</a
+                >
+              </li>
+              <li>
+                <a href="#" data-page="forecast.html" id="forecast">Forecast</a>
+              </li>
+              <li>
+                <a href="#" data-page="promotions.html" id="promotions">Ads</a>
+              </li>
+              <li><a href="#" data-page="guide.html" id="guide">Guide</a></li>
             </ul>
           </nav>
         </header>
@@ -31,7 +39,11 @@
             <button id="icon-search">Find</button>
           </div>
         </section>
-        <section></section>
+        <section id="display">
+          <div class="innerBox">
+            <div id="content"></div>
+          </div>
+        </section>
         <footer>
           <div class="innerBox">
             <div class="text-copyright">
@@ -40,7 +52,8 @@
               non-commercial use only. Windy does not guarantee any specific
               results from the use of its services or components. Windy is a
               portfolio site utilizing the public data portal API. If you are
-              interested in submitting a proposal, <a>please download it.</a>
+              interested in submitting a proposal,
+              <a download="">please download it.</a>
             </div>
           </div>
         </footer>
