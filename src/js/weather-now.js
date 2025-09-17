@@ -92,7 +92,7 @@ try {
           </div>
           <div class="card-grid">
             <div class="card-title">Current Weather</div>
-            <img src="/src/assets/images/wind.svg" alt="wind" />
+            <img src="./src/assets/images/wind.svg" alt="wind" />
           </div>
           <div class="card-grid">
             <div class="card-title">Temperature</div>
@@ -101,7 +101,7 @@ try {
           <div class="card-grid">
             <div>
               <div class="card-title">Precipitation</div>
-              <img src="/src/assets/images/cape.svg" alt="cape" />
+              <img src="./src/assets/images/cape.svg" alt="cape" />
             </div>
             <div class="card-value-sub">${parsedData.POP}%</div>
           </div>

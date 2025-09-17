@@ -2,7 +2,7 @@ let content = document.getElementById('content');
 let link = document.querySelectorAll('#pages a');
 link.forEach((item) => {
   item.addEventListener('click', () => {
-    let pagePath = `/src/html/${item.getAttribute('data-page')}`;
+    let pagePath = `./src/html/${item.getAttribute('data-page')}`;
     let pageName = item.getAttribute('data-page'); // weather-now.html
     fetch(pagePath)
       .then((res) => res.text())
