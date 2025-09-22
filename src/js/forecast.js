@@ -9,8 +9,44 @@ function findWeatherIcons(value) {
       return 'wind.svg';
   }
 }
+// 드래그 슬라이드
+function dragSlide(obj) {
+  let isDown = false;
+  let startX = 0,
+    translateX = 0;
+
+  obj.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.clientX;
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    let deltaX = e.clientX - startX;
+    startX = e.clientX;
+    translateX += deltaX;
+    console.log(translateX);
+
+    // 마지막 카드가 보이는 위치 계산
+    const totalWidth = Array.from(obj.children).reduce(
+      (sum, card) => sum + card.offsetWidth + 10,
+      0
+    ); // gap 포함
+    const containerWidth = obj.parentElement.offsetWidth;
+    const minTranslateX = containerWidth - totalWidth;
+    if (translateX > 0) translateX = 0;
+    if (translateX < minTranslateX) translateX = minTranslateX;
+
+    obj.style.transform = `translateX(${translateX}px)`;
+  });
+  window.addEventListener('mouseup', () => {
+    isDown = false;
+  });
+}
 
 try {
+  // 카드랜더링, 드래그슬라이드 전역변수 할당
+  const forecastInnerBox = document.querySelector('.forecast-innerBox');
+
   // dateKey 할당
   const now = new Date();
   const hour = now.getHours();
@@ -73,7 +109,6 @@ try {
         });
       });
       // 카드 랜더링
-      const forecastInnerBox = document.querySelector('.forecast-innerBox');
       hourlyWeatherToday.forEach((item) => {
         const div = document.createElement('div');
         div.className = 'forecast-card';
@@ -82,11 +117,12 @@ try {
                     <img src="./src/assets/images/${findWeatherIcons(
                       item.weather
                     )}" alt="" />
-                    <div class="card-value-main">${item.temp}</div>
+                    <div class="card-value-main">${item.temp}°</div>
                 `;
         forecastInnerBox.appendChild(div);
       });
     });
+  dragSlide(forecastInnerBox);
 } catch (e) {
   console.error(e);
 }
