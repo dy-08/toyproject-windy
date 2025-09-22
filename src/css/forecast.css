@@ -1,9 +1,7 @@
 /* 1200 + 340 = 1540 */
 .forecast-wrap {
-    width: calc(100vw - 340px);
-    /* background-color: #11111110; */
     overflow-x: hidden;
-    margin-left: 340px;
+    padding: 80px 0;
 }
 .forecast-innerBox {
     width: 100%;
@@ -13,9 +11,8 @@
 }
 .forecast-card {
     user-select: none;
-    width: 200px;
-    height: 232px;
-    /* background-color: rgba(0, 0, 255, 0.644); */
+    width: 249px;
+    height: 326px;
     box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
     border: 0;
     border-radius: 8px;
@@ -25,7 +22,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
     cursor: pointer;
 }
 .forecast-card > img {
