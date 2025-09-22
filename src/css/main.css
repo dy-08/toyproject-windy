@@ -294,14 +294,42 @@ footer {
 
   .innerBox ul {
     flex-direction: column;
-    /* 예비로 노출 */
-    transform: translate(-50px, 500px);
+    position: absolute;
+    z-index: 1001;
+    /* js추가 */
+    /* left: 2.4rem; */
+    left: -100%;
+    top: 140px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
   }
-
   #mobile-menu {
     display: block;
     right: 40px;
     top: 27px;
+  }
+  #mobile-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    /* js추가 */
+    /* width: 80%; */
+    width: 0;
+    height: 100vh;
+    background-color: #f8f8f8;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  #mobile-bg-logo {
+    position: absolute;
+    width: 170px;
+    height: 55px;
+    left: 2.4rem;
+    top: 13px;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.5s linear;
   }
 
   /* Content */

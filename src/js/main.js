@@ -29,3 +29,26 @@ link.forEach((item) => {
       .catch((e) => console.log(e));
   });
 });
+
+// 모바일 메뉴 이벤트
+const m_menu = document.getElementById('mobile-menu');
+const m_bg = document.getElementById('mobile-bg');
+const pages = document.getElementById('pages');
+const m_logo = document.getElementById('mobile-bg-logo');
+const body = document.querySelector('body');
+let isClick = false;
+m_menu.addEventListener('click', () => {
+  if (!isClick) {
+    m_bg.style.width = '80%';
+    pages.style.left = '2.4rem';
+    m_logo.style.opacity = 1;
+    body.style.overflow = 'hidden';
+    isClick = true;
+  } else {
+    m_bg.style.width = '0';
+    pages.style.left = '-100%';
+    m_logo.style.opacity = 0;
+    body.style.overflow = 'visible';
+    isClick = false;
+  }
+});
