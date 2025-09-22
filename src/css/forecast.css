@@ -1,45 +1,45 @@
 /* 1200 + 340 = 1540 */
 .forecast-wrap {
-    /* overflow-x: hidden; */
-    padding: 80px 0;
+  overflow-x: hidden;
+  padding: 180px 0;
 }
 .forecast-innerBox {
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    padding: 10px 0;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
 }
 .forecast-card {
-    user-select: none;
-    width: 249px;
-    height: 326px;
-    box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
-    border: 0;
-    border-radius: 8px;
-    flex-shrink: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    cursor: pointer;
+  user-select: none;
+  width: 249px;
+  height: 326px;
+  box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
+  border: 0;
+  border-radius: 8px;
+  flex-shrink: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  cursor: pointer;
 }
 .forecast-card > img {
-    width: 80px;
+  width: 80px;
 }
 /* 위치, 날짜 */
 .card-value-small {
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    font-family: 'Apple SD Gothic Neo', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  font-family: 'Apple SD Gothic Neo', sans-serif;
 }
 
 /* 기온 (메인값) */
 .card-value-main {
-    font-size: 40px;
-    font-weight: 700;
-    color: #111;
-    font-family: 'Apple SD Gothic Neo', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #111;
+  font-family: 'Apple SD Gothic Neo', sans-serif;
 }
