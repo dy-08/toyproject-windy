@@ -23,7 +23,6 @@ link.forEach((item) => {
 
                 // 기존 동적 스크립트 제거
                 document.querySelectorAll('script[data-dynamic]').forEach((s) => s.remove());
-
                 connectScript(pageName);
             })
             .catch((e) => console.log(e));
