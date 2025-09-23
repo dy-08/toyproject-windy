@@ -71,5 +71,14 @@ link.forEach((item) => {
 });
 
 // 캐릭터 스크롤 이벤트
-let wsy = window.scrollY;
-console.log(wsy);
+let characterEvent = () => {
+  let wsy = window.scrollY;
+  const character = document.getElementById('character');
+  window.addEventListener('scroll', () => {
+    if (wsy >= 0) {
+      character.classList.add('appeared');
+    }
+  });
+};
+
+window.addEventListener('scroll', characterEvent);

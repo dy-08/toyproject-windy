@@ -90,18 +90,24 @@ main {
   margin: 0 auto;
 }
 
-.char {
+.character {
   width: 150px;
   height: 150px;
   position: fixed;
   z-index: 998;
-  right: 100px;
-  bottom: 100px;
+  right: 5%;
+  bottom: 5%;
   background-image: url(../assets/images/character.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* box-shadow: 1px 1px 15px #10101010; */
+  opacity: 0; /**/
+  transform: scale(1.4); /**/
+  transition: all 0.5s linear;
+}
+.character.appeared {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* Header */
@@ -337,13 +343,14 @@ footer {
   }
   #mobile-bg-logo {
     position: absolute;
-    width: 170px;
-    height: 55px;
-    left: 2.4rem;
-    top: 13px;
+    width: 166px;
+    height: 51px;
+    left: 2rem;
+    top: 16px;
     z-index: 1000;
     opacity: 0;
     transition: all 0.5s linear;
+    transition-delay: 0.4s;
   }
 
   /* Content */
@@ -388,6 +395,13 @@ footer {
   /* actual-image */
   .actual-image {
     width: 100%;
+  }
+  /* Character */
+  .character {
+    width: 120px;
+    height: 120px;
+    right: 0;
+    bottom: 2%;
   }
   footer {
     margin-top: 10px;
