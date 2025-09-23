@@ -1,49 +1,63 @@
 /* 1200 + 340 = 1540 */
 .forecast-wrap {
-    overflow-x: hidden;
-    padding: 180px 0;
+  overflow-x: hidden;
+  padding: 180px 0;
 }
 .forecast-innerBox {
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    padding: 10px 0;
-    transition: all 0.5s ease;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  transition: all 0.5s ease;
 }
 .forecast-card {
-    user-select: none;
-    width: 249px;
-    height: 326px;
-    box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
-    border: 0;
-    border-radius: 8px;
-    flex-shrink: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    cursor: pointer;
+  user-select: none;
+  width: 249px;
+  height: 326px;
+  box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
+  border: 0;
+  border-radius: 8px;
+  flex-shrink: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  cursor: pointer;
 }
 .forecast-card > img {
-    width: 80px;
+  width: 80px;
 }
 /* 위치, 날짜 */
 .card-value-small {
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    font-family: 'Apple SD Gothic Neo', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  font-family: 'Apple SD Gothic Neo', sans-serif;
 }
 
 /* 기온 (메인값) */
 .card-value-main {
-    font-size: 40px;
-    font-weight: 700;
-    color: #111;
-    font-family: 'Apple SD Gothic Neo', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #111;
+  font-family: 'Apple SD Gothic Neo', sans-serif;
 }
 
 @media (max-width: 480px) {
+  .forecast-wrap {
+    padding: 40px 0;
+  }
+  .forecast-innerBox {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .forecast-card {
+    width: 100%;
+    height: 120px;
+    flex-direction: row;
+  }
 }
