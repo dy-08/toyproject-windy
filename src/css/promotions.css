@@ -1,0 +1,14 @@
+.promotions {
+    width: 100%;
+    padding: 4rem 0;
+    overflow-x: hidden;
+}
+.ads li {
+    animation: ads 60s linear infinite;
+}
+
+@keyframes ads {
+    100% {
+        transform: translateX(-1500%);
+    }
+}
