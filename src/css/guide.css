@@ -54,3 +54,30 @@
   font-weight: bold;
   color: #111;
 }
+
+/* Mobile: ~ 480px */
+@media (max-width: 480px) {
+  .guide-innerwrap {
+    padding: 3rem 0;
+  }
+  .guide-innerbox {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .guide-innerbox:nth-child(odd) {
+    flex-direction: inherit;
+  }
+  .guide-innerbox div:first-of-type {
+    width: 100%;
+    height: 276px;
+    border: 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .guide-innerbox div:nth-of-type(2) {
+    width: 100%;
+  }
+}
