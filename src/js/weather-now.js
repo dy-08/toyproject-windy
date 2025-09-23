@@ -101,7 +101,7 @@ try {
           <div class="card-grid">
             <div>
               <div class="card-title">Precipitation</div>
-              <img src="./src/assets/images/cape.svg" alt="cape" />
+              <img src="./src/assets/images/cape.svg" alt="cape" class="img-cape" />
             </div>
             <div class="card-value-sub">${parsedData.POP}%</div>
           </div>
