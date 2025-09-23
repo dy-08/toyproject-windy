@@ -5,7 +5,14 @@
   display: flex;
 }
 .ads {
+  display: flex;
+  gap: 20px;
   animation: ads 60s linear infinite;
+}
+.ads img {
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 @keyframes ads {
@@ -14,5 +21,24 @@
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+/* Mobile: ~ 480px */
+@media (max-width: 480px) {
+  .promotions {
+    padding: 4rem 0;
+  }
+  .ads {
+    gap: 20px;
+    animation: ads 60s linear infinite;
+  }
+  .ads img {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+  }
+  footer {
+    padding: 100px 0;
   }
 }

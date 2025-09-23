@@ -135,7 +135,7 @@ nav {
 }
 
 /* R */
-.innerBox ul {
+#pages {
   display: flex;
   gap: 50px;
 }
@@ -306,7 +306,7 @@ footer {
     width: calc(100vw - 80px);
   }
 
-  .innerBox ul {
+  #pages {
     flex-direction: column;
     position: absolute;
     z-index: 1001;
