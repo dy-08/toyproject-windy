@@ -1,3 +1,5 @@
+import { render } from './weather-now.js';
+
 let content = document.getElementById('content');
 let link = document.querySelectorAll('#pages a');
 // 모바일 메뉴 이벤트
@@ -48,27 +50,35 @@ function connectScript(a) {
     const script = document.createElement('script');
     const page = a.slice(0, -5);
     script.src = `./src/js/${page}.js`;
+    script.type = 'module';
     script.setAttribute('data-dynamic', 'true');
     document.body.appendChild(script);
 }
+
 // 페이지 변환
-function changedPages(item) {
+async function changedPages(item) {
     let path = `./src/html/${item.getAttribute('data-page')}`;
     let name = item.getAttribute('data-page'); // weather-now.html
-    fetch(path)
-        .then((res) => res.text())
-        .then((data) => {
-            content.innerHTML = data;
-            // 기존 동적 스크립트 제거 (수정필요)
-            document.querySelectorAll('script[data-dynamic]').forEach(() => {
-                (s) => s.remove();
-            });
-            connectScript(name);
-        });
+
+    try {
+        const res = await fetch(path);
+        const data = await res.text();
+        content.innerHTML = data;
+
+        // 기존 동적 스크립트 제거
+        document.querySelectorAll('script[data-dynamic]').forEach((s) => s.remove());
+
+        // 새 스크립트 연결
+        connectScript(name);
+    } catch (e) {
+        console.error('페이지 로드 실패:', e);
+    }
 }
+
+// 링크 클릭 이벤트
 link.forEach((item) => {
-    item.addEventListener('click', () => {
-        changedPages(item);
+    item.addEventListener('click', async () => {
+        await changedPages(item);
     });
 });
 
@@ -95,7 +105,6 @@ searchButton.addEventListener('click', async () => {
     console.log(target);
     if (target) {
         const a = document.getElementById('weather-now');
-        changedPages(a);
         console.log(target);
 
         let targetLocation = {
@@ -103,6 +112,7 @@ searchButton.addEventListener('click', async () => {
             x: target.x,
             y: target.y,
         };
+        changedPages(a);
         await render(targetLocation);
     }
 });

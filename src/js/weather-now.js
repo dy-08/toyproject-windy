@@ -36,10 +36,7 @@ function formatDate(date) {
     return `${yyyy}${mm}${dd}`;
 }
 
-function render({ location, x, y }) {
-    console.log(x);
-    console.log(y);
-
+export async function render({ location, x, y }) {
     const today = new Date();
     const todayStr = formatDate(today);
     const hour = today.getHours();
@@ -48,27 +45,23 @@ function render({ location, x, y }) {
         baseDate = todayStr;
     } else {
         const yesterday = new Date(today);
-        console.log(yesterday);
         yesterday.setDate(today.getDate() - 1);
         baseDate = formatDate(yesterday);
     }
-    fetch(
+    const res = await fetch(
         `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=9424b102fa31a2cdf077b43d93ffbbd26e040beb866f241236f5a5e7913ab3ea&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${baseDate}&base_time=0500&nx=${x}&ny=${y}`
-    )
-        .then((res) => res.json())
-        .then((data) => {
-            const datas = data.response.body.items.item;
-            const filtered = datas.filter((item) => item.fcstDate === todayStr && item.fcstTime === '0600');
-            const parsedData = {};
-            filtered.forEach((item) => {
-                parsedData[item.category] = item.fcstValue;
-            });
-            // SKY(하늘상태)에 따라 이미지변경 추가해야됨 (3가지) 091825
-            const weatherNow = document.querySelector('.weather-now');
-            // weatherNow.innerHTML = '';
-            const div = document.createElement('div');
-            div.className = 'weather-card';
-            div.innerHTML = `
+    );
+    const data = await res.json();
+    const datas = data.response.body.items.item;
+    const filtered = datas.filter((item) => item.fcstDate === todayStr && item.fcstTime === '0600');
+    const parsedData = {};
+    filtered.forEach((item) => {
+        parsedData[item.category] = item.fcstValue;
+    });
+    const weatherNow = document.querySelector('.weather-now');
+    const div = document.createElement('div');
+    div.className = 'weather-card';
+    div.innerHTML = `
         <div class="card">
           <div class="card-grid">
             <div class="card-title">location</div>
@@ -103,7 +96,8 @@ function render({ location, x, y }) {
           </div>
         </div>
       `;
-            weatherNow.appendChild(div);
-        });
+    weatherNow.appendChild(div);
 }
-render({ location: 'Jungang', x: 57, y: 121 });
+document.addEventListener('DOMContentLoaded', () => {
+    render({ location: '안산', x: 57, y: 121 });
+});
