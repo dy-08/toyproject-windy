@@ -30,61 +30,49 @@
  */
 
 function formatDate(date) {
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth() + 1).padStart(2, '0'); // 9
-  const dd = String(date.getDate()).padStart(2, '0');
-  return `${yyyy}${mm}${dd}`;
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0'); // 9
+    const dd = String(date.getDate()).padStart(2, '0');
+    return `${yyyy}${mm}${dd}`;
 }
 
-try {
-  const today = new Date();
-  const todayStr = formatDate(today);
-  console.log(today);
-  console.log(todayStr);
+function render({ location, x, y }) {
+    console.log(x);
+    console.log(y);
 
-  const hour = today.getHours();
-  let baseDate;
-  if (hour >= 5) {
-    baseDate = todayStr;
-  } else {
-    const yesterday = new Date(today);
-    console.log(yesterday);
-    yesterday.setDate(today.getDate() - 1);
-    baseDate = formatDate(yesterday);
-  }
-
-  // 데이터 오늘 오전 5시 기준
-  // 시간도 동적으로 할당해주면 좋을듯
-  fetch(
-    `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=9424b102fa31a2cdf077b43d93ffbbd26e040beb866f241236f5a5e7913ab3ea&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${baseDate}&base_time=0500&nx=57&ny=121`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      const datas = data.response.body.items.item;
-      // datas.forEach((item) => {
-      //   console.log('fcstTime:', item.fcstTime, typeof item.fcstTime);
-      // });
-
-      const filtered = datas.filter(
-        (item) => item.fcstDate === todayStr && item.fcstTime === '0600'
-      );
-      console.log(filtered);
-      console.log(baseDate);
-
-      const parsedData = {};
-      filtered.forEach((item) => {
-        parsedData[item.category] = item.fcstValue;
-      });
-      console.log(parsedData);
-
-      // SKY(하늘상태)에 따라 이미지변경 추가해야됨 (3가지) 091825
-      const div = document.createElement('div');
-      div.className = 'weather-card';
-      div.innerHTML = `
+    const today = new Date();
+    const todayStr = formatDate(today);
+    const hour = today.getHours();
+    let baseDate;
+    if (hour >= 5) {
+        baseDate = todayStr;
+    } else {
+        const yesterday = new Date(today);
+        console.log(yesterday);
+        yesterday.setDate(today.getDate() - 1);
+        baseDate = formatDate(yesterday);
+    }
+    fetch(
+        `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=9424b102fa31a2cdf077b43d93ffbbd26e040beb866f241236f5a5e7913ab3ea&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${baseDate}&base_time=0500&nx=${x}&ny=${y}`
+    )
+        .then((res) => res.json())
+        .then((data) => {
+            const datas = data.response.body.items.item;
+            const filtered = datas.filter((item) => item.fcstDate === todayStr && item.fcstTime === '0600');
+            const parsedData = {};
+            filtered.forEach((item) => {
+                parsedData[item.category] = item.fcstValue;
+            });
+            // SKY(하늘상태)에 따라 이미지변경 추가해야됨 (3가지) 091825
+            const weatherNow = document.querySelector('.weather-now');
+            // weatherNow.innerHTML = '';
+            const div = document.createElement('div');
+            div.className = 'weather-card';
+            div.innerHTML = `
         <div class="card">
           <div class="card-grid">
-            <div class="card-title">Location</div>
-            <div class="card-value-small">Jungang</div>
+            <div class="card-title">location</div>
+            <div class="card-value-small">${location}</div>
           </div>
           <div class="card-grid">
             <div class="card-title">Today</div>
@@ -115,9 +103,7 @@ try {
           </div>
         </div>
       `;
-      const weatherNow = document.querySelector('.weather-now');
-      weatherNow.appendChild(div);
-    });
-} catch (e) {
-  console.error(e);
+            weatherNow.appendChild(div);
+        });
 }
+render({ location: 'Jungang', x: 57, y: 121 });
