@@ -30,35 +30,40 @@
  */
 
 function formatDate(date) {
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0'); // 9
-    const dd = String(date.getDate()).padStart(2, '0');
-    return `${yyyy}${mm}${dd}`;
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, '0'); // 9
+  const dd = String(date.getDate()).padStart(2, '0');
+  return `${yyyy}${mm}${dd}`;
 }
 
 export async function render({ location, x, y }) {
-    const today = new Date();
-    const todayStr = formatDate(today);
-    const hour = today.getHours();
-    let baseDate;
-    if (hour >= 5) {
-        baseDate = todayStr;
-    } else {
-        const yesterday = new Date(today);
-        yesterday.setDate(today.getDate() - 1);
-        baseDate = formatDate(yesterday);
-    }
+  const today = new Date();
+  const todayStr = formatDate(today);
+  const hour = today.getHours();
+  let baseDate;
+  if (hour >= 5) {
+    baseDate = todayStr;
+  } else {
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    baseDate = formatDate(yesterday);
+  }
+  try {
     const res = await fetch(
-        `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=9424b102fa31a2cdf077b43d93ffbbd26e040beb866f241236f5a5e7913ab3ea&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${baseDate}&base_time=0500&nx=${x}&ny=${y}`
+      `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=9424b102fa31a2cdf077b43d93ffbbd26e040beb866f241236f5a5e7913ab3ea&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${baseDate}&base_time=0500&nx=${x}&ny=${y}`
     );
     const data = await res.json();
     const datas = data.response.body.items.item;
-    const filtered = datas.filter((item) => item.fcstDate === todayStr && item.fcstTime === '0600');
+    const filtered = datas.filter(
+      (item) => item.fcstDate === todayStr && item.fcstTime === '0600'
+    );
     const parsedData = {};
     filtered.forEach((item) => {
-        parsedData[item.category] = item.fcstValue;
+      parsedData[item.category] = item.fcstValue;
     });
     const weatherNow = document.querySelector('.weather-now');
+    console.log(weatherNow);
+
     const div = document.createElement('div');
     div.className = 'weather-card';
     div.innerHTML = `
@@ -97,7 +102,15 @@ export async function render({ location, x, y }) {
         </div>
       `;
     weatherNow.appendChild(div);
+  } catch (e) {
+    console.error(e);
+  }
 }
 document.addEventListener('DOMContentLoaded', () => {
-    render({ location: '안산', x: 57, y: 121 });
+  const obj = {
+    location: '안산',
+    x: 57,
+    y: 121,
+  };
+  render(obj);
 });
