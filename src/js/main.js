@@ -1,4 +1,5 @@
-import { fetchWeatherData } from './weather-now.js';
+import { fetchWeatherCurrent } from './weather-now.js';
+import { fetchWeatherRange } from './forecast.js';
 import { ads } from './promotions.js';
 
 let content = document.getElementById('content');
@@ -85,7 +86,8 @@ link.forEach((item) => {
     await changePages(item);
     console.log('page:', page); // page: weather-now.html, ...
     if (page === 'weather-now.html')
-      fetchWeatherData({ location: '안산', x: 57, y: 121 });
+      fetchWeatherCurrent({ location: '안산', x: 57, y: 121 });
+    if (page === 'forecast.html') fetchWeatherRange();
     if (page === 'promotions.html') await ads(15);
   });
 });
@@ -131,7 +133,7 @@ searchButton.addEventListener('click', async () => {
       y: target.y,
     };
     changePages(a);
-    await fetchWeatherData(targetLocation);
+    await fetchWeatherCurrent(targetLocation);
   }
 });
 

@@ -36,7 +36,7 @@ function formatDate(date) {
   return `${yyyy}${mm}${dd}`;
 }
 
-export async function fetchWeatherData({ location, x, y }) {
+export async function fetchWeatherCurrent({ location, x, y }) {
   const today = new Date();
   const todayStr = formatDate(today);
   const hour = today.getHours();
@@ -123,4 +123,4 @@ function renderWeather({ location, todayStr, parsedData }) {
   weatherNow.appendChild(div);
 }
 
-fetchWeatherData({ location: '안산', x: 57, y: 121 });
+fetchWeatherCurrent({ location: '안산', x: 57, y: 121 });
