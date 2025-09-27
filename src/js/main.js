@@ -1,4 +1,5 @@
-import { render } from './weather-now.js';
+import { fetchWeatherData } from './weather-now.js';
+import { ads } from './promotions.js';
 
 let content = document.getElementById('content');
 let link = document.querySelectorAll('#pages a');
@@ -80,9 +81,12 @@ async function changePages(item) {
 // 링크 클릭 이벤트
 link.forEach((item) => {
   item.addEventListener('click', async () => {
-    // const page = item.getAttribute('data-page');
+    const page = item.getAttribute('data-page');
     await changePages(item);
-    // console.log('page:', page); // page: weather-now.html, ...
+    console.log('page:', page); // page: weather-now.html, ...
+    if (page === 'weather-now.html')
+      fetchWeatherData({ location: '안산', x: 57, y: 121 });
+    if (page === 'promotions.html') await ads(15);
   });
 });
 
@@ -126,8 +130,8 @@ searchButton.addEventListener('click', async () => {
       x: target.x,
       y: target.y,
     };
-    changedPages(a);
-    await render(targetLocation);
+    changePages(a);
+    await fetchWeatherData(targetLocation);
   }
 });
 

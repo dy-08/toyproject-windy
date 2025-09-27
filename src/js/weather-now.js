@@ -36,7 +36,7 @@ function formatDate(date) {
   return `${yyyy}${mm}${dd}`;
 }
 
-export async function render({ location, x, y }) {
+export async function fetchWeatherData({ location, x, y }) {
   const today = new Date();
   const todayStr = formatDate(today);
   const hour = today.getHours();
@@ -49,6 +49,10 @@ export async function render({ location, x, y }) {
     baseDate = formatDate(yesterday);
   }
   try {
+    // 092825
+    // 추가되어야할 예외처리
+    // 현재상황: 공공데이터포탈사이트가 내려감 (데이터관리 이슈)
+    // API 304,429 대응: 1시간간격으로 로컬스토리지에 임시데이터를 저장 또는 JSON에 데이터를 임시저장하기
     const res = await fetch(
       `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=9424b102fa31a2cdf077b43d93ffbbd26e040beb866f241236f5a5e7913ab3ea&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${baseDate}&base_time=0500&nx=${x}&ny=${y}`
     );
@@ -61,56 +65,62 @@ export async function render({ location, x, y }) {
     filtered.forEach((item) => {
       parsedData[item.category] = item.fcstValue;
     });
-    const weatherNow = document.querySelector('.weather-now');
-    console.log(weatherNow);
 
-    const div = document.createElement('div');
-    div.className = 'weather-card';
-    div.innerHTML = `
-        <div class="card">
-          <div class="card-grid">
-            <div class="card-title">location</div>
-            <div class="card-value-small">${location}</div>
-          </div>
-          <div class="card-grid">
-            <div class="card-title">Today</div>
-            <div class="card-value-small">${todayStr}</div>
-          </div>
-          <div class="card-grid">
-            <div class="card-title">Current Weather</div>
-            <img src="./src/assets/images/wind.svg" alt="wind" />
-          </div>
-          <div class="card-grid">
-            <div class="card-title">Temperature</div>
-            <div class="card-value-main">${parsedData.TMP}</div>
-          </div>
-          <div class="card-grid">
-            <div>
-              <div class="card-title">Precipitation</div>
-              <img src="./src/assets/images/cape.svg" alt="cape" class="img-cape" />
-            </div>
-            <div class="card-value-sub">${parsedData.POP}%</div>
-          </div>
-          <div class="card-grid">
-            <div class="card-title">Humidity</div>
-            <div class="card-value-sub">${parsedData.REH}</div>
-          </div>
-          <div class="card-grid">
-            <div class="card-title">Wind speed</div>
-            <div class="card-value-sub">${parsedData.WSD}</div>
-          </div>
-        </div>
-      `;
-    weatherNow.appendChild(div);
+    renderWeather({ location, todayStr, parsedData });
   } catch (e) {
-    console.error(e);
+    console.error('API 실패, fallback 데이터 사용', e);
+    const mockData = {
+      TMP: 22,
+      POP: 10,
+      REH: 55,
+      WSD: 2.5,
+      SKY: 1,
+    };
+    renderWeather({ location, todayStr, parsedData: mockData });
   }
 }
-document.addEventListener('DOMContentLoaded', () => {
-  const obj = {
-    location: '안산',
-    x: 57,
-    y: 121,
-  };
-  render(obj);
-});
+
+function renderWeather({ location, todayStr, parsedData }) {
+  const weatherNow = document.querySelector('.weather-now');
+  weatherNow.innerHTML = '';
+  const div = document.createElement('div');
+  div.className = 'weather-card';
+  div.innerHTML = `
+      <div class="card">
+        <div class="card-grid">
+          <div class="card-title">location</div>
+          <div class="card-value-small">${location}</div>
+        </div>
+        <div class="card-grid">
+          <div class="card-title">Today</div>
+          <div class="card-value-small">${todayStr}</div>
+        </div>
+        <div class="card-grid">
+          <div class="card-title">Current Weather</div>
+          <img src="./src/assets/images/wind.svg" alt="wind" />
+        </div>
+        <div class="card-grid">
+          <div class="card-title">Temperature</div>
+          <div class="card-value-main">${parsedData.TMP}</div>
+        </div>
+        <div class="card-grid">
+          <div>
+            <div class="card-title">Precipitation</div>
+            <img src="./src/assets/images/cape.svg" alt="cape" class="img-cape" />
+          </div>
+          <div class="card-value-sub">${parsedData.POP}%</div>
+        </div>
+        <div class="card-grid">
+          <div class="card-title">Humidity</div>
+          <div class="card-value-sub">${parsedData.REH}</div>
+        </div>
+        <div class="card-grid">
+          <div class="card-title">Wind speed</div>
+          <div class="card-value-sub">${parsedData.WSD}</div>
+        </div>
+      </div>
+    `;
+  weatherNow.appendChild(div);
+}
+
+fetchWeatherData({ location: '안산', x: 57, y: 121 });

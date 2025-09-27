@@ -3,7 +3,7 @@
  * 리스트를 두 세트 이어붙이고 CSS 애니메이션으로 절반만 이동시켜 끊김 없이 반복되도록 구현했습니다.
  */
 
-function ads(n) {
+export async function ads(n) {
   const ul = document.querySelector('.ads');
   let startValue = 1;
   while (startValue <= n) {
