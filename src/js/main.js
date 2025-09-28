@@ -92,14 +92,39 @@ link.forEach((item) => {
   });
 });
 
-// QR 버튼 이벤트 처리 해야됨
-// btn-appstore, btn-googleplay, btn-huawei
-// function openQR(a) {
-
-// }
-document.getElementById('btn-huawei').addEventListener('click', () => {
-  return (window.location.href =
-    'https://appgallery.huawei.com/app/C110281657');
+// QR 버튼 이벤트 처리
+// onclick 사용불가 -> script type이 module이라 이벤트리스너 직접 등록해야됨
+document.querySelectorAll('.content-btns-innerWrap > button').forEach((btn) =>
+  btn.addEventListener('click', () => {
+    const img = document.getElementById('qr');
+    const bg = document.querySelector('.bg-qr');
+    const qr = document.querySelector('.content-qr');
+    switch (btn.id) {
+      case 'btn-appstore':
+      case 'btn-googleplay':
+        const src =
+          btn.id === 'btn-appstore'
+            ? './src/assets/images/applestore_qr.jpeg'
+            : './src/assets/images/playstore_qr.jpeg';
+        img.src = src;
+        bg.classList.add('on');
+        qr.classList.add('on');
+        break;
+      case 'btn-huawei':
+        return window.open(
+          'https://appgallery.huawei.com/app/C110281657',
+          '_blank'
+        );
+    }
+  })
+);
+// this는 화살표함수에서 작동 ❌
+// 2가지해결책: event.currentTarget 사용하거나 화살표함수 -> function키워드사용
+// 화살표 함수(=>) 안에서는 this가 현재 요소를 가리키지 않기 때문
+// 화살표 함수는 자신만의 this를 가지지 않고, 상위 스코프의 this를 그대로 가져오기 때문에 this.style은 undefined가 됨
+document.querySelector('.bg-qr').addEventListener('click', function () {
+  document.querySelector('.content-qr').classList.remove('on');
+  this.classList.remove('on');
 });
 
 // 캐릭터 스크롤 이벤트

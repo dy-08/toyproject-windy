@@ -13,6 +13,8 @@
   <body>
     <main>
       <div class="wrap">
+        <!-- bg: QR -->
+        <div class="bg-qr"></div>
         <header>
           <nav class="innerBox">
             <a href="./index.html"
@@ -23,17 +25,37 @@
             /></a>
             <ul id="pages">
               <li>
-                <a href="#" data-page="weather-now.html" id="weather-now" class="pages"
+                <a
+                  href="#"
+                  data-page="weather-now.html"
+                  id="weather-now"
+                  class="pages"
                   >Now</a
                 >
               </li>
               <li>
-                <a href="#" data-page="forecast.html" id="forecast" class="pages">Forecast</a>
+                <a
+                  href="#"
+                  data-page="forecast.html"
+                  id="forecast"
+                  class="pages"
+                  >Forecast</a
+                >
               </li>
               <li>
-                <a href="#" data-page="promotions.html" id="promotions" class="pages">Ads</a>
+                <a
+                  href="#"
+                  data-page="promotions.html"
+                  id="promotions"
+                  class="pages"
+                  >Ads</a
+                >
               </li>
-              <li><a href="#" data-page="guide.html" id="guide" class="pages">Guide</a></li>
+              <li>
+                <a href="#" data-page="guide.html" id="guide" class="pages"
+                  >Guide</a
+                >
+              </li>
             </ul>
           </nav>
           <div>
@@ -44,7 +66,11 @@
             />
           </div>
           <div id="mobile-bg">
-            <img id="mobile-bg-logo" src="./src/assets/images/logo-w-words-short.svg" alt="윈디 로고"></img>
+            <img
+              id="mobile-bg-logo"
+              src="./src/assets/images/logo-w-words-short.svg"
+              alt="윈디 로고"
+            />
           </div>
         </header>
         <section id="search">
@@ -57,6 +83,13 @@
           <div class="innerBox" id="display-InnerBox">
             <div id="content">
               <div class="content-innerWrap">
+                <!-- qr -->
+                <div class="content-qr">
+                  <!-- ./src/assets/images/playstore_qr.jpeg -->
+                  <!-- ./src/assets/images/applestore_qr.jpeg -->
+                  <img src="" alt="QR" id="qr" />
+                  <span class="txt-small">Scan code with camera</span>
+                </div>
                 <div class="actual-image mobile-actualImage"></div>
                 <div>
                   <div class="content-text">
@@ -79,9 +112,9 @@
                   </div>
                   <div class="content-btns">
                     <div class="content-btns-innerWrap">
-                      <button id="btn-appstore" onclick="openQR('appstore')"></button>
-                      <button id="btn-googleplay" onclick="openQR('googleplay')"></button>
-                      <button id="btn-huawei" onclick="goToHuawei()"></button>
+                      <button id="btn-appstore"></button>
+                      <button id="btn-googleplay"></button>
+                      <button id="btn-huawei"></button>
                     </div>
                   </div>
                 </div>
@@ -104,8 +137,9 @@
           </div>
         </footer>
       </div>
+
       <div class="character" id="character"></div>
     </main>
-      <script type="module" src="./src/js/main.js"></script>
+    <script type="module" src="./src/js/main.js"></script>
   </body>
 </html>
