@@ -72,11 +72,11 @@ export async function fetchWeatherRange() {
 
     // 파싱 (기준: 1일 06:00~06:00, SKY, TMP, 시간은 두 배열 중 SKY 활용)
     // SKY
-    const parsedDataSky = res.filter(
+    const parsedDataSky = datas.filter(
       (item) => item.fcstDate === dateKey && item.category === 'SKY'
     );
     const nextDay = Number(dateKey) + 1;
-    let parsedDataNextday = res.filter(
+    let parsedDataNextday = datas.filter(
       (item) => item.fcstDate === String(nextDay) && item.category === 'SKY'
     );
     let i = 0;
@@ -85,11 +85,11 @@ export async function fetchWeatherRange() {
       i++;
     }
     // TEMP
-    const parsedDataTemp = res.filter(
+    const parsedDataTemp = datas.filter(
       (item) => item.fcstDate === dateKey && item.category === 'TMP'
     );
     parsedDataNextday = [];
-    parsedDataNextday = res.filter(
+    parsedDataNextday = datas.filter(
       (item) => item.fcstDate === String(nextDay) && item.category === 'TMP'
     );
     i = 0;

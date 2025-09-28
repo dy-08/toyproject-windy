@@ -1,6 +1,7 @@
-import { fetchWeatherCurrent } from './weather-now.js';
+import { fetchWeatherCurrent } from './weather.js';
 import { fetchWeatherRange } from './forecast.js';
 import { ads } from './promotions.js';
+import { virtualAssistant } from './character.js';
 
 let content = document.getElementById('content');
 let link = document.querySelectorAll('#pages a');
@@ -60,7 +61,8 @@ function connectScript(a) {
 // 페이지 변환
 async function changePages(item) {
   let path = `./src/html/${item.getAttribute('data-page')}`;
-  let name = item.getAttribute('data-page'); // weather-now.html
+  let name = item.getAttribute('data-page'); // weather.html
+  console.log(name);
 
   try {
     const res = await fetch(path);
@@ -84,11 +86,23 @@ link.forEach((item) => {
   item.addEventListener('click', async () => {
     const page = item.getAttribute('data-page');
     await changePages(item);
-    console.log('page:', page); // page: weather-now.html, ...
-    if (page === 'weather-now.html')
+    // console.log('page:', page.slice(0, -5)); // page: weather, ...
+
+    if (page === 'weather.html') {
       fetchWeatherCurrent({ location: '안산', x: 57, y: 121 });
-    if (page === 'forecast.html') fetchWeatherRange();
-    if (page === 'promotions.html') await ads(15);
+      virtualAssistant(page.slice(0, -5));
+    }
+    if (page === 'forecast.html') {
+      fetchWeatherRange();
+      virtualAssistant(page.slice(0, -5));
+    }
+    if (page === 'promotions.html') {
+      await ads(15);
+      virtualAssistant(page.slice(0, -5));
+    }
+    if (page === 'guide.html') {
+      virtualAssistant(page.slice(0, -5));
+    }
   });
 });
 
@@ -99,6 +113,7 @@ document.querySelectorAll('.content-btns-innerWrap > button').forEach((btn) =>
     const img = document.getElementById('qr');
     const bg = document.querySelector('.bg-qr');
     const qr = document.querySelector('.content-qr');
+    const body = document.querySelector('body');
     switch (btn.id) {
       case 'btn-appstore':
       case 'btn-googleplay':
@@ -109,6 +124,7 @@ document.querySelectorAll('.content-btns-innerWrap > button').forEach((btn) =>
         img.src = src;
         bg.classList.add('on');
         qr.classList.add('on');
+        body.style.overflow = 'hidden';
         break;
       case 'btn-huawei':
         return window.open(
@@ -125,21 +141,27 @@ document.querySelectorAll('.content-btns-innerWrap > button').forEach((btn) =>
 document.querySelector('.bg-qr').addEventListener('click', function () {
   document.querySelector('.content-qr').classList.remove('on');
   this.classList.remove('on');
+  body.style.overflow = 'visible';
 });
 
 // 캐릭터 스크롤 이벤트
 let characterEvent = () => {
-  let wsy = window.scrollY;
-  const character = document.getElementById('character');
-  window.addEventListener('scroll', () => {
+  const assistantCharacter = document.getElementById('assistant-character');
+
+  const onScroll = () => {
+    let wsy = window.scrollY;
     if (wsy >= 0) {
-      character.classList.add('appeared');
+      assistantCharacter.classList.add('appeared');
+      virtualAssistant('index');
+
+      // 한 번만 실행되도록 이벤트 제거
+      window.removeEventListener('scroll', onScroll);
     }
-  });
+  };
+  window.addEventListener('scroll', onScroll);
 };
 
-window.addEventListener('scroll', characterEvent);
-
+characterEvent();
 // 검색기능
 const searchButton = document.getElementById('icon-search');
 searchButton.addEventListener('click', async () => {
@@ -149,7 +171,7 @@ searchButton.addEventListener('click', async () => {
   const [target] = data.filter((item) => item.location === searchTarget);
   console.log(target);
   if (target) {
-    const a = document.getElementById('weather-now');
+    const a = document.getElementById('weather');
     console.log(target);
 
     let targetLocation = {

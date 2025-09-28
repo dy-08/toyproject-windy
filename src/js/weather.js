@@ -81,8 +81,8 @@ export async function fetchWeatherCurrent({ location, x, y }) {
 }
 
 function renderWeather({ location, todayStr, parsedData }) {
-  const weatherNow = document.querySelector('.weather-now');
-  weatherNow.innerHTML = '';
+  const weather = document.querySelector('.weather');
+  weather.innerHTML = '';
   const div = document.createElement('div');
   div.className = 'weather-card';
   div.innerHTML = `
@@ -120,7 +120,7 @@ function renderWeather({ location, todayStr, parsedData }) {
         </div>
       </div>
     `;
-  weatherNow.appendChild(div);
+  weather.appendChild(div);
 }
 
 fetchWeatherCurrent({ location: '안산', x: 57, y: 121 });

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Windy</title>
     <link rel="stylesheet" href="./src/css/main.css" />
-    <link rel="stylesheet" href="./src/css/weather-now.css" />
+    <link rel="stylesheet" href="./src/css/weather.css" />
     <link rel="stylesheet" href="./src/css/forecast.css" />
     <link rel="stylesheet" href="./src/css/promotions.css" />
     <link rel="stylesheet" href="./src/css/guide.css" />
@@ -25,11 +25,7 @@
             /></a>
             <ul id="pages">
               <li>
-                <a
-                  href="#"
-                  data-page="weather-now.html"
-                  id="weather-now"
-                  class="pages"
+                <a href="#" data-page="weather.html" id="weather" class="pages"
                   >Now</a
                 >
               </li>
@@ -85,8 +81,6 @@
               <div class="content-innerWrap">
                 <!-- qr -->
                 <div class="content-qr">
-                  <!-- ./src/assets/images/playstore_qr.jpeg -->
-                  <!-- ./src/assets/images/applestore_qr.jpeg -->
                   <img src="" alt="QR" id="qr" />
                   <span class="txt-small">Scan code with camera</span>
                 </div>
@@ -137,8 +131,12 @@
           </div>
         </footer>
       </div>
-
-      <div class="character" id="character"></div>
+      <div class="virtualAssistant">
+        <div class="assistantMessages" id="assistantMessages">
+          <!-- 제가 도와드릴 게 있을까요? -->
+        </div>
+        <div class="assistant-character" id="assistant-character"></div>
+      </div>
     </main>
     <script type="module" src="./src/js/main.js"></script>
   </body>
