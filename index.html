@@ -1,145 +1,112 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Windy</title>
-    <link rel="stylesheet" href="./src/css/main.css" />
-    <link rel="stylesheet" href="./src/css/weather.css" />
-    <link rel="stylesheet" href="./src/css/forecast.css" />
-    <link rel="stylesheet" href="./src/css/promotions.css" />
-    <link rel="stylesheet" href="./src/css/guide.css" />
-  </head>
-  <body>
-    <main>
-      <div class="wrap">
-        <!-- bg: QR -->
-        <div class="bg-qr"></div>
-        <header>
-          <nav class="innerBox">
-            <a href="./index.html"
-              ><img
-                id="windy"
-                src="./src/assets/images/logo-w-words-short.svg"
-                alt="윈디 로고"
-            /></a>
-            <ul id="pages">
-              <li>
-                <a href="#" data-page="weather.html" id="weather" class="pages"
-                  >Now</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  data-page="forecast.html"
-                  id="forecast"
-                  class="pages"
-                  >Forecast</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  data-page="promotions.html"
-                  id="promotions"
-                  class="pages"
-                  >Ads</a
-                >
-              </li>
-              <li>
-                <a href="#" data-page="guide.html" id="guide" class="pages"
-                  >Guide</a
-                >
-              </li>
-            </ul>
-          </nav>
-          <div>
-            <img
-              src="./src/assets/images/icon-menu.png"
-              alt="모바일 메뉴 아이콘"
-              id="mobile-menu"
-            />
-          </div>
-          <div id="mobile-bg">
-            <img
-              id="mobile-bg-logo"
-              src="./src/assets/images/logo-w-words-short.svg"
-              alt="윈디 로고"
-            />
-          </div>
-        </header>
-        <section id="search">
-          <div class="innerBox">
-            <input type="text" class="input-search" />
-            <button id="icon-search">Find</button>
-          </div>
-        </section>
-        <section id="display">
-          <div class="innerBox" id="display-InnerBox">
-            <div id="content">
-              <div class="content-innerWrap">
-                <!-- qr -->
-                <div class="content-qr">
-                  <img src="" alt="QR" id="qr" />
-                  <span class="txt-small">Scan code with camera</span>
-                </div>
-                <div class="actual-image mobile-actualImage"></div>
-                <div>
-                  <div class="content-text">
-                    <div class="text-title">
-                      Professional <span class="v-mobile">Weather App</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Windy</title>
+        <link rel="stylesheet" href="./src/css/main.css" />
+        <link rel="stylesheet" href="./src/css/weather.css" />
+        <link rel="stylesheet" href="./src/css/forecast.css" />
+        <link rel="stylesheet" href="./src/css/promotions.css" />
+        <link rel="stylesheet" href="./src/css/guide.css" />
+    </head>
+    <body>
+        <main>
+            <div class="wrap">
+                <!-- bg: QR -->
+                <div class="bg-qr"></div>
+                <header>
+                    <nav class="innerBox">
+                        <a href="./index.html"
+                            ><img id="windy" src="./src/assets/images/logo-w-words-short.svg" alt="윈디 로고"
+                        /></a>
+                        <ul id="pages">
+                            <li>
+                                <a href="#" data-page="weather.html" id="weather" class="pages">Now</a>
+                            </li>
+                            <li>
+                                <a href="#" data-page="forecast.html" id="forecast" class="pages">Forecast</a>
+                            </li>
+                            <li>
+                                <a href="#" data-page="promotions.html" id="promotions" class="pages">Ads</a>
+                            </li>
+                            <li>
+                                <a href="#" data-page="guide.html" id="guide" class="pages">Guide</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div>
+                        <img src="./src/assets/images/icon-menu.png" alt="모바일 메뉴 아이콘" id="mobile-menu" />
                     </div>
-                    <div class="text-description">
-                      Windy.app is a professional weather app, created for water
-                      and wind sports and all outdoor activities.<span
-                        class="br"
-                      ></span>
-                      Get a detailed online 10 day weather forecast, live
-                      worldwide wind map and local weather reports from the most
-                      accurate weather models.<span class="br"></span> Compare
-                      spot conditions, ask locals in the app chat, discover
-                      meteo lessons, and share your experience in our Windy.app
-                      Community.<span class="br"></span>
-                      Be sure with Windy.app.
+                    <div id="mobile-bg">
+                        <img id="mobile-bg-logo" src="./src/assets/images/logo-w-words-short.svg" alt="윈디 로고" />
                     </div>
-                  </div>
-                  <div class="content-btns">
-                    <div class="content-btns-innerWrap">
-                      <button id="btn-appstore"></button>
-                      <button id="btn-googleplay"></button>
-                      <button id="btn-huawei"></button>
+                </header>
+                <section id="search">
+                    <div class="innerBox">
+                        <input type="text" class="input-search" />
+                        <button id="icon-search">Find</button>
                     </div>
-                  </div>
-                </div>
-                <div class="actual-image pc-actualImage"></div>
-              </div>
+                </section>
+                <section id="display">
+                    <div class="innerBox" id="display-InnerBox">
+                        <div id="content">
+                            <div class="content-innerWrap">
+                                <!-- qr -->
+                                <div class="content-qr">
+                                    <img src="" alt="QR" id="qr" />
+                                    <span class="txt-small">Scan code with camera</span>
+                                </div>
+                                <div class="actual-image mobile-actualImage"></div>
+                                <div>
+                                    <div class="content-text">
+                                        <div class="text-title">
+                                            Professional <span class="v-mobile">Weather App</span>
+                                        </div>
+                                        <div class="text-description">
+                                            Windy.app is a professional weather app, created for water and wind sports
+                                            and all outdoor activities.<span class="br"></span> Get a detailed online 10
+                                            day weather forecast, live worldwide wind map and local weather reports from
+                                            the most accurate weather models.<span class="br"></span> Compare spot
+                                            conditions, ask locals in the app chat, discover meteo lessons, and share
+                                            your experience in our Windy.app Community.<span class="br"></span>
+                                            Be sure with Windy.app.
+                                        </div>
+                                    </div>
+                                    <div class="content-btns">
+                                        <div class="content-btns-innerWrap">
+                                            <button id="btn-appstore"></button>
+                                            <button id="btn-googleplay"></button>
+                                            <button id="btn-huawei"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="actual-image pc-actualImage"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="innerBox">
+                        <div class="text-copyright">
+                            © 2025 Copyright Windy. Weather forecasts, all location information, and article content are
+                            provided for personal, non-commercial use only. Windy does not guarantee any specific
+                            results from the use of its services or components. Windy is a portfolio site utilizing the
+                            public data portal API. If you are interested in submitting a proposal,
+                            <span class="br"
+                                ><a href="./기획서_권영호.pdf" target="_blank">please download it.</a></span
+                            >
+                        </div>
+                    </div>
+                </footer>
             </div>
-          </div>
-        </section>
-        <footer>
-          <div class="innerBox">
-            <div class="text-copyright">
-              © 2025 Copyright Windy. Weather forecasts, all location
-              information, and article content are provided for personal,
-              non-commercial use only. Windy does not guarantee any specific
-              results from the use of its services or components. Windy is a
-              portfolio site utilizing the public data portal API. If you are
-              interested in submitting a proposal,
-              <a href="./기획서_권영호.pdf" target="_blank"
-                >please download it.</a
-              >
+            <div class="virtualAssistant">
+                <div class="assistantMessages" id="assistantMessages">
+                    <!-- 제가 도와드릴 게 있을까요? -->
+                </div>
+                <div class="assistant-character" id="assistant-character"></div>
             </div>
-          </div>
-        </footer>
-      </div>
-      <div class="virtualAssistant">
-        <div class="assistantMessages" id="assistantMessages">
-          <!-- 제가 도와드릴 게 있을까요? -->
-        </div>
-        <div class="assistant-character" id="assistant-character"></div>
-      </div>
-    </main>
-    <script type="module" src="./src/js/main.js"></script>
-  </body>
+        </main>
+        <script type="module" src="./src/js/main.js"></script>
+    </body>
 </html>

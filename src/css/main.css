@@ -318,6 +318,9 @@ footer {
     font-size: 12px;
     color: var(--color-gray);
 }
+span.br {
+    display: inline-block;
+}
 
 /* Responsive */
 /* PC: 1200px ~ */
@@ -487,5 +490,8 @@ footer {
     }
     footer {
         margin-top: 10px;
+    }
+    span.br {
+        display: block;
     }
 }
