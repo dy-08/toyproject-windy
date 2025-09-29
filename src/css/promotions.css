@@ -1,44 +1,55 @@
+.promotionsNoti {
+    font-size: 16px;
+    padding-top: 4rem;
+    text-align: center;
+}
+
 .promotions {
-  width: 100%;
-  padding: 4rem 0;
-  overflow-x: hidden;
-  display: flex;
+    width: 100%;
+    padding: 4rem 0;
+    overflow-x: hidden;
+    display: flex;
 }
 .ads {
-  display: flex;
-  gap: 20px;
-  animation: ads 60s linear infinite;
+    display: flex;
+    gap: 20px;
+    animation: ads 60s linear infinite;
 }
 .ads img {
-  border: 0;
-  border-radius: 4px;
-  overflow: hidden;
+    border: 0;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 @keyframes ads {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* Mobile: ~ 480px */
 @media (max-width: 480px) {
-  .promotions {
-    padding: 4rem 0;
-  }
-  .ads {
-    gap: 20px;
-    animation: ads 60s linear infinite;
-  }
-  .ads img {
-    width: 300px;
-    height: auto;
-    object-fit: cover;
-  }
-  footer {
-    padding: 100px 0;
-  }
+    .promotionsNoti {
+        font-size: 13px;
+        padding-top: 2rem;
+        text-align: center;
+    }
+    .promotions {
+        padding: 2rem 0;
+    }
+    .ads {
+        gap: 20px;
+        animation: ads 60s linear infinite;
+    }
+    .ads img {
+        width: 300px;
+        height: auto;
+        object-fit: cover;
+    }
+    footer {
+        padding: 100px 0;
+    }
 }
